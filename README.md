@@ -6,7 +6,7 @@ Claude Code as a hands-on example of how I leverage modern tools to ship softwar
 
 ## Live Site
 
-[https://iamgarlug.com](#)
+[https://iamgarlug.com](https://iamgarlug.com)
 
 ## Built With
 
