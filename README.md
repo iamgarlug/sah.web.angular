@@ -1,10 +1,12 @@
 # Stephen Humburg — Portfolio Website
 
-A personal portfolio website built with Angular 21 and Angular Material. The site serves as both a professional portfolio — hosting my resume, cover letter, links, and contact form — and a _simple_ live demonstration of my front-end development skills.
+This site is a professional portfolio where you can learn about my background, download my resume,
+and find links to my work and professional profiles. I built this site myself using Angular and
+Claude Code as a hands-on example of how I leverage modern tools to ship software efficiently.
 
 ## Live Site
 
-[https://YOUR-DEPLOYED-URL-HERE](#)
+[https://iamgarlug.com](#)
 
 ## Built With
 
@@ -18,23 +20,18 @@ A personal portfolio website built with Angular 21 and Angular Material. The sit
 - [Vitest](https://vitest.dev/) (unit testing)
 - [Claude Code](https://claude.ai/) (AI-assisted development)
 
-## Development server
+## CI/CD
 
-To start a local development server, run:
+Merging a pull request into `main` automatically triggers the [GitHub action deployment workflow](.github/workflows/deploy.yml), which tests, builds, and deploys the application to AWS.
 
-```bash
-ng serve
+```mermaid
+flowchart LR
+    PR[PR Merged to main] --> Test[npm run test]
+    Test --> Build[npm run build]
+    Build --> S3[Sync to S3 Bucket]
+    S3 --> CF[Invalidate CloudFront Cache]
+    CF --> Live[Live at iamgarlug.com]
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`.
-
-## Building
-
-```bash
-ng build
-```
-
-Build artifacts are stored in the `dist/` directory.
 
 ## Environment Configuration (not committed)
 
@@ -47,8 +44,26 @@ src/environments/environment.prod.ts   ← production
 
 See `src/environments/environment.ts` for the required keys.
 
+## Building
+
+```bash
+ng build
+```
+
+Build artifacts are stored in the `dist/` directory.
+
 ## Running unit tests
 
 ```bash
 ng test
 ```
+
+## Development server
+
+To start a local development server, run:
+
+```bash
+ng serve
+```
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`.
