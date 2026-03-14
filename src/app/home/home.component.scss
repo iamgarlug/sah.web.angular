@@ -1,0 +1,37 @@
+.home-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.home-description {
+    flex: 2;
+}
+
+.home-tech {
+    flex: 1;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+ul {
+    padding-left: 20px;
+    margin-top: 4px;
+}
+
+@media (max-width: 800px) {
+    .home-layout {
+        flex-direction: column;
+        gap: 0;
+    }
+}
