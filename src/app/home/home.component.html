@@ -9,23 +9,43 @@
                 <p>
                     My name is Stephen Humburg. This site is a professional portfolio where you
                     can learn about my background, download my resume, and find links to my work
-                    and professional profiles. I built this site myself using Angular and Claude Code
-                    as a hands-on example of how I leverage modern tools to ship software efficiently.
+                    and professional profiles.
                 </p>
+                <p>
+                    I built it myself as a hands-on example of how I leverage modern tools to ship
+                    software efficiently. The design is intentionally minimal — the priority here is
+                    technical implementation over visual polish. I used Claude Code throughout:
+                    scaffolding components, implementing routing, writing TypeScript and HTML, and
+                    configuring the CI/CD deployment pipeline.
+                </p>
+                <pre class="mermaid">
+flowchart LR
+    subgraph Manual
+        Modify[Modify Code] --> PR[Merge PR to main]
+    end
+    subgraph Automatic
+        Test[npm run test] --> Build[npm run build]
+        Build --> S3[Sync to S3 Bucket]
+        S3 --> CF[Invalidate CloudFront Cache]
+        CF --> Live[Live at iamgarlug.com]
+    end
+    Manual --> Automatic
+                </pre>
             </div>
             <div class="home-tech">
                 <h2>Built With</h2>
                 <h3>Production</h3>
                 <ul>
-                    <li>Angular 21.2.4</li>
-                    <li>Angular Material 21.2.2</li>
-                    <li>TypeScript 5.9.3</li>
+                    <li><a href="https://angular.dev/" target="_blank">Angular 21.2.4</a></li>
+                    <li><a href="https://material.angular.dev/" target="_blank">Angular Material 21.2.2</a></li>
+                    <li><a href="https://www.typescriptlang.org/" target="_blank">TypeScript 5.9.3</a></li>
+                    <li><a href="https://mermaid.js.org/" target="_blank">Mermaid 11.13.0</a></li>
                 </ul>
                 <h3>Development</h3>
                 <ul>
-                    <li>Angular CLI 21.2.2</li>
-                    <li>Vitest 4.1.0</li>
-                    <li>Claude Code</li>
+                    <li><a href="https://angular.dev/tools/cli" target="_blank">Angular CLI 21.2.2</a></li>
+                    <li><a href="https://vitest.dev/" target="_blank">Vitest 4.1.0</a></li>
+                    <li><a href="https://claude.ai/code" target="_blank">Claude Code</a></li>
                 </ul>
             </div>
         </div>

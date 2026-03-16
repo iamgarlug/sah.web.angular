@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import mermaid from 'mermaid';
 
 @Component({
   selector: 'app-home',
@@ -9,4 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {}
+export class HomeComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+    mermaid.run({ querySelector: '.mermaid' });
+  }
+}

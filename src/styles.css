@@ -10,8 +10,17 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-a, a:hover, a:visited {
+mat-sidenav a, mat-sidenav a:visited {
     color: white;
+}
+
+mat-card a, mat-card a:visited {
+    color: var(--mat-sys-primary);
+}
+
+mat-card a:hover {
+    color: var(--mat-sys-primary);
+    opacity: 0.8;
 }
 
 mat-sidenav-container, mat-sidenav-content {
@@ -33,7 +42,7 @@ mat-card {
 }
 
 span.entry {
-    align-items: flex-start;
+    align-items: center;
     display: flex;
 }
 

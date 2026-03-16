@@ -6,3 +6,7 @@ mat-sidenav {
 mat-sidenav span.entry {
     align-items: center;
 }
+
+mat-sidenav a:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}

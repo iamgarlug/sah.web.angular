@@ -12,13 +12,14 @@ Claude Code as a hands-on example of how I leverage modern tools to ship softwar
 
 **Production**
 - [Angular 21](https://angular.dev/)
-- [Angular Material 21](https://material.angular.io/)
-- TypeScript 5.9.3
+- [Angular Material 21](https://material.angular.dev/)
+- [TypeScript 5.9.3](https://www.typescriptlang.org/)
+- [Mermaid 11.13.0](https://mermaid.js.org/)
 
 **Development**
-- Angular CLI 21.2.2
+- [Angular CLI 21.2.2](https://angular.dev/tools/cli)
 - [Vitest](https://vitest.dev/) (unit testing)
-- [Claude Code](https://claude.ai/) (AI-assisted development)
+- [Claude Code](https://claude.ai/code) (AI-assisted development)
 
 ## CI/CD
 
@@ -26,11 +27,16 @@ Merging a pull request into `main` automatically triggers the [GitHub action dep
 
 ```mermaid
 flowchart LR
-    PR[PR Merged to main] --> Test[npm run test]
-    Test --> Build[npm run build]
-    Build --> S3[Sync to S3 Bucket]
-    S3 --> CF[Invalidate CloudFront Cache]
-    CF --> Live[Live at iamgarlug.com]
+    subgraph Manual
+        Modify[Modify Code] --> PR[Merge PR to main]
+    end
+    subgraph Automatic
+        Test[npm run test] --> Build[npm run build]
+        Build --> S3[Sync to S3 Bucket]
+        S3 --> CF[Invalidate CloudFront Cache]
+        CF --> Live[Live at iamgarlug.com]
+    end
+    Manual --> Automatic
 ```
 
 ## Environment Configuration (not committed)
