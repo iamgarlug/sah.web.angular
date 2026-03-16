@@ -19,15 +19,19 @@
                     configuring the CI/CD deployment pipeline.
                 </p>
                 <pre class="mermaid">
-flowchart LR
+flowchart TB
     subgraph Manual
         Modify[Modify Code] --> PR[Merge PR to main]
     end
     subgraph Automatic
-        Test[npm run test] --> Build[npm run build]
-        Build --> S3[Sync to S3 Bucket]
-        S3 --> CF[Invalidate CloudFront Cache]
-        CF --> Live[Live at iamgarlug.com]
+        subgraph GHA[GitHub Actions]
+            Test[Run Tests] --> Build[Build Site]
+        end
+        subgraph AWS
+            S3[Sync to S3 Bucket] --> CF[Invalidate CloudFront Cache]
+            CF --> Live[Live at iamgarlug.com]
+        end
+        GHA --> AWS
     end
     Manual --> Automatic
                 </pre>

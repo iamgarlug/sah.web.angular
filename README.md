@@ -26,15 +26,19 @@ Claude Code as a hands-on example of how I leverage modern tools to ship softwar
 Merging a pull request into `main` automatically triggers the [GitHub action deployment workflow](.github/workflows/deploy.yml), which tests, builds, and deploys the application to AWS.
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Manual
         Modify[Modify Code] --> PR[Merge PR to main]
     end
     subgraph Automatic
-        Test[npm run test] --> Build[npm run build]
-        Build --> S3[Sync to S3 Bucket]
-        S3 --> CF[Invalidate CloudFront Cache]
-        CF --> Live[Live at iamgarlug.com]
+        subgraph GHA[GitHub Actions]
+            Test[Run Tests] --> Build[Build Site]
+        end
+        subgraph AWS
+            S3[Sync to S3 Bucket] --> CF[Invalidate CloudFront Cache]
+            CF --> Live[Live at iamgarlug.com]
+        end
+        GHA --> AWS
     end
     Manual --> Automatic
 ```
